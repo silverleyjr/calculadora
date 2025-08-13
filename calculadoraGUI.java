@@ -10,7 +10,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
-import java.util.ArrayList;
 import java.text.DecimalFormat;
 import java.math.RoundingMode;
 
@@ -40,31 +39,13 @@ public class calculadoraGUI implements ActionListener {
 
 	JFrame frame;
 
-	String visorTexto = ("");
-	String operadorUsado = ("");
-	public String operadorErrado = ("");
-
-	public int i = 0;
-	public int valorReal1 = 0;
-	public int valorReal2 = 0;
-	public int posicaoNumero = 1;
-	public int operacaoVazia = 0;
-	public int index = 1;
-	public int potencia = 1;
-	public int resultado = 0;
-	public int valorAposResultado = 0;
-
 	DecimalFormat numberFormat = new DecimalFormat("#.####");
-
-	public boolean antesOperador = true;
 
 	public String firstNumber = "";
 	public String operator = "";
 	public String secondNumber = "";
+		
 	public boolean lastNumber = false;
-
-	public ArrayList<Integer> primeiroNumero = new ArrayList<>();
-	public ArrayList<Integer> segundoNumero = new ArrayList<>();
 
 	public static void main(String[] args) {
 		new calculadoraGUI();
@@ -137,7 +118,6 @@ public class calculadoraGUI implements ActionListener {
 		buttonVezes.setFont(fonteAtualButton.deriveFont(13f));
 		buttonDividir.setFont(fonteNova);
 
-		label1.setText(visorTexto);
 		label1.setPreferredSize(new Dimension(252, 50));
 		label1.setFont(fonteAtualButton.deriveFont(16f));
 
