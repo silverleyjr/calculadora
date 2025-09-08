@@ -68,6 +68,22 @@ public class calculadoraGUI implements ActionListener {
 		buttonDividir = new JButton("/");
 		buttonIgual = new JButton("=");
 
+		button1.setActionCommand("Number");
+		button2.setActionCommand("Number");
+		button3.setActionCommand("Number");
+		button4.setActionCommand("Number");
+		button5.setActionCommand("Number");
+		button6.setActionCommand("Number");
+		button7.setActionCommand("Number");
+		button8.setActionCommand("Number");
+		button9.setActionCommand("Number");
+		button0.setActionCommand("Number");
+		buttonMais.setActionCommand("Operator");
+		buttonMenos.setActionCommand("Operator");
+		buttonVezes.setActionCommand("Operator");
+		buttonDividir.setActionCommand("Operator");
+		buttonIgual.setActionCommand("Operator");
+
 		button1.addActionListener(this);
 		button2.addActionListener(this);
 		button3.addActionListener(this);
@@ -83,22 +99,6 @@ public class calculadoraGUI implements ActionListener {
 		buttonVezes.addActionListener(this);
 		buttonDividir.addActionListener(this);
 		buttonIgual.addActionListener(this);
-
-		button1.setActionCommand("number");
-		button2.setActionCommand("number");
-		button3.setActionCommand("number");
-		button4.setActionCommand("number");
-		button5.setActionCommand("number");
-		button6.setActionCommand("number");
-		button7.setActionCommand("number");
-		button8.setActionCommand("number");
-		button9.setActionCommand("number");
-		button0.setActionCommand("number");
-		buttonMais.setActionCommand("operator");
-		buttonMenos.setActionCommand("operator");
-		buttonVezes.setActionCommand("operator");
-		buttonDividir.setActionCommand("operator");
-		buttonIgual.setActionCommand("operator");
 
 		button1.setPreferredSize(new Dimension(70, 70));
 		button2.setPreferredSize(new Dimension(70, 70));
@@ -190,33 +190,35 @@ public class calculadoraGUI implements ActionListener {
 	@Override
 
 	public void actionPerformed(ActionEvent e) {
+		String command = e.getActionCommand();
 		JButton btn = (JButton) e.getSource();
 		String btnTxt = btn.getText();
-		String command = e.getActionCommand();
 		handleInput(btnTxt, command);
 		drawEquation();
 	}
 
 	public void handleInput(String btnTxt, String command) {
-		boolean readyOperator = (!(btnTxt == "=") && !lastNumber);
-		boolean readyCalculate = !(firstNumber == "" && secondNumber == "" && operator == "");
-		switch (command) {
-			case "number":
-				addNumber(btnTxt);
-				break;
-			case "operator":
-				if (readyOperator) {
-					operator = btnTxt;
-					lastNumber = true;
-					return;
-				}
-				if (readyCalculate) {
-					float result = calculate(operator, firstNumber, secondNumber);
-					resetNumbers(result);
-					break;
-				}
-		}
+		if ("Number".equals(command)) {
+			addNumber(btnTxt);
 
+		} else if ("Operator".equals(command)) {
+			if (!lastNumber && !(btnTxt == "=")) {
+				operator = btnTxt;
+				lastNumber = true;
+				return;
+			}
+
+			if (!(firstNumber == "") && !(secondNumber == "")) {
+				getResults(firstNumber, secondNumber, operator);
+			}
+		}
+	}
+
+	public void getResults(String firstNumber, String secondNumber, String operator) {
+		float first = Float.parseFloat(firstNumber);
+		float second = Float.parseFloat(secondNumber);
+		float result = calculate(operator, first, second);
+		resetNumbers(result);
 	}
 
 	public void addNumber(String num) {
@@ -241,9 +243,7 @@ public class calculadoraGUI implements ActionListener {
 		operator = "";
 	}
 
-	public float calculate(String operator, String firstNumber, String secondNumber) {
-		float first = Float.parseFloat(firstNumber);
-		float second = Float.parseFloat(secondNumber);
+	public float calculate(String operator, float first, float second) {
 		switch (operator) {
 			case "-":
 				return first - second;
