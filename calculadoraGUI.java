@@ -2,14 +2,18 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Font;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 import java.text.DecimalFormat;
 import java.math.RoundingMode;
 
@@ -24,6 +28,8 @@ public class calculadoraGUI implements ActionListener {
 	JButton button8;
 	JButton button9;
 	JButton button0;
+	JButton backSpace;
+	JButton decimalPoint;
 	JButton buttonMais;
 	JButton buttonMenos;
 	JButton buttonVezes;
@@ -62,6 +68,8 @@ public class calculadoraGUI implements ActionListener {
 		button8 = new JButton("8");
 		button9 = new JButton("9");
 		button0 = new JButton("0");
+		backSpace = new JButton("<-");
+		decimalPoint = new JButton(".");
 		buttonMais = new JButton("+");
 		buttonMenos = new JButton("-");
 		buttonVezes = new JButton("*");
@@ -78,6 +86,8 @@ public class calculadoraGUI implements ActionListener {
 		button8.addActionListener(this);
 		button9.addActionListener(this);
 		button0.addActionListener(this);
+		backSpace.addActionListener(this);
+		decimalPoint.addActionListener(this);
 		buttonMais.addActionListener(this);
 		buttonMenos.addActionListener(this);
 		buttonVezes.addActionListener(this);
@@ -94,11 +104,31 @@ public class calculadoraGUI implements ActionListener {
 		button8.setActionCommand("number");
 		button9.setActionCommand("number");
 		button0.setActionCommand("number");
+		backSpace.setActionCommand("backSpace");
+		decimalPoint.setActionCommand("point");
 		buttonMais.setActionCommand("operator");
 		buttonMenos.setActionCommand("operator");
 		buttonVezes.setActionCommand("operator");
 		buttonDividir.setActionCommand("operator");
 		buttonIgual.setActionCommand("operator");
+
+		// button1.setPreferredSize(new Dimension(70, 70));
+		// button2.setPreferredSize(new Dimension(70, 70));
+		// button3.setPreferredSize(new Dimension(70, 70));
+		// button4.setPreferredSize(new Dimension(70, 70));
+		// button5.setPreferredSize(new Dimension(70, 70));
+		// button6.setPreferredSize(new Dimension(70, 70));
+		// button7.setPreferredSize(new Dimension(70, 70));
+		// button8.setPreferredSize(new Dimension(70, 70));
+		// button9.setPreferredSize(new Dimension(70, 70));
+		// button0.setPreferredSize(new Dimension(210, 50));
+		// backSpace.setPreferredSize(new Dimension(42, 50));
+		// decimalPoint.setPreferredSize(new Dimension(42, 50));
+		// buttonMais.setPreferredSize(new Dimension(42, 42));
+		// buttonMenos.setPreferredSize(new Dimension(42, 42));
+		// buttonVezes.setPreferredSize(new Dimension(42, 42));
+		// buttonDividir.setPreferredSize(new Dimension(42, 42));
+		// buttonIgual.setPreferredSize(new Dimension(42, 42));
 
 		button1.setPreferredSize(new Dimension(70, 70));
 		button2.setPreferredSize(new Dimension(70, 70));
@@ -109,12 +139,14 @@ public class calculadoraGUI implements ActionListener {
 		button7.setPreferredSize(new Dimension(70, 70));
 		button8.setPreferredSize(new Dimension(70, 70));
 		button9.setPreferredSize(new Dimension(70, 70));
-		button0.setPreferredSize(new Dimension(252, 50));
-		buttonMais.setPreferredSize(new Dimension(42, 42));
-		buttonMenos.setPreferredSize(new Dimension(42, 42));
-		buttonVezes.setPreferredSize(new Dimension(42, 42));
-		buttonDividir.setPreferredSize(new Dimension(42, 42));
-		buttonIgual.setPreferredSize(new Dimension(42, 42));
+		button0.setPreferredSize(new Dimension(70, 70));
+		backSpace.setPreferredSize(new Dimension(70, 70));
+		decimalPoint.setPreferredSize(new Dimension(70, 70));
+		buttonMais.setPreferredSize(new Dimension(70, 70));
+		buttonMenos.setPreferredSize(new Dimension(70, 70));
+		buttonVezes.setPreferredSize(new Dimension(70, 70));
+		buttonDividir.setPreferredSize(new Dimension(70, 70));
+		buttonIgual.setPreferredSize(new Dimension(70, 70));
 
 		Font fonteAtualButton = button1.getFont();
 		Font fonteNova = (fonteAtualButton.deriveFont(13f));
@@ -129,57 +161,111 @@ public class calculadoraGUI implements ActionListener {
 		button8.setFont(fonteNova);
 		button9.setFont(fonteNova);
 		button0.setFont(fonteNova);
+		backSpace.setFont(fonteNova.deriveFont(15f));
+		decimalPoint.setFont(fonteNova.deriveFont(20f));
 		buttonMais.setFont(fonteAtualButton.deriveFont(13f));
 		buttonMenos.setFont(fonteNova);
 		buttonVezes.setFont(fonteAtualButton.deriveFont(13f));
 		buttonDividir.setFont(fonteNova);
+		buttonIgual.setFont(fonteNova);
 
-		label1.setPreferredSize(new Dimension(252, 50));
+		label1.setPreferredSize(new Dimension(70, 70));
 		label1.setFont(fonteAtualButton.deriveFont(16f));
+		Border lineBorder = BorderFactory.createLineBorder(Color.GRAY, 2);
+		label1.setBorder(lineBorder);
+
+		button1.setBorder(lineBorder);
+		button2.setBorder(lineBorder);
+		button3.setBorder(lineBorder);
+		button4.setBorder(lineBorder);
+		button5.setBorder(lineBorder);
+		button6.setBorder(lineBorder);
+		button7.setBorder(lineBorder);
+		button8.setBorder(lineBorder);
+		button9.setBorder(lineBorder);
+		button0.setBorder(lineBorder);
+		backSpace.setBorder(lineBorder);
+		decimalPoint.setBorder(lineBorder);
+		buttonMais.setBorder(lineBorder);
+		buttonMenos.setBorder(lineBorder);
+		buttonVezes.setBorder(lineBorder);
+		buttonDividir.setBorder(lineBorder);
+		buttonIgual.setBorder(lineBorder);
 
 		numberFormat.setRoundingMode(RoundingMode.CEILING);
 
-		panelNumeros = new JPanel();
-		panelNumeros.setBorder(BorderFactory.createEmptyBorder(0, 205, 0, 0));
-		panelNumeros.setLayout(new GridLayout(3, 3));
+		JPanel panelmain = new JPanel();
+		panelmain.setBorder(BorderFactory.createEmptyBorder(0, 205, 205, 205));
+		panelmain.setLayout(new GridLayout(4, 4));
+		panelmain.add(button1);
+		panelmain.add(button2);
+		panelmain.add(button3);
+		panelmain.add(buttonMais);
+		panelmain.add(button4);
+		panelmain.add(button5);
+		panelmain.add(button6);
+		panelmain.add(buttonMenos);
+		panelmain.add(button7);
+		panelmain.add(button8);
+		panelmain.add(button9);
+		panelmain.add(buttonVezes);
+		panelmain.add(decimalPoint);
+		panelmain.add(button0);
+		panelmain.add(buttonIgual);
+		panelmain.add(buttonDividir);
 
-		panelExtras = new JPanel();
-		panelExtras.setBorder(BorderFactory.createEmptyBorder(0, 205, 205, 205));
-		panelExtras.setLayout(new GridLayout(1, 1));
+		// panelNumeros = new JPanel();
+		// panelNumeros.setBorder(BorderFactory.createEmptyBorder(0, 205, 0, 0));
+		// panelNumeros.setLayout(new GridLayout(3, 3));
 
-		panelOperadores = new JPanel();
-		panelOperadores.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 205));
-		panelOperadores.setLayout(new GridLayout(5, 1));
+		// panelExtras = new JPanel();
+		// panelExtras.setBorder(BorderFactory.createEmptyBorder(0, 205, 205, 205));
+		// panelExtras.setLayout(new GridLayout(1, 1));
 
-		panelVisor = new JPanel();
+		// panelOperadores = new JPanel();
+		// panelOperadores.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 205));
+		// panelOperadores.setLayout(new GridLayout(5, 1));
+
+		panelVisor = new JPanel(new GridBagLayout());
 		panelVisor.setBorder(BorderFactory.createEmptyBorder(205, 205, 0, 205));
-		panelVisor.setLayout(new GridLayout(1, 1));
 
-		panelNumeros.add(button1);
-		panelNumeros.add(button2);
-		panelNumeros.add(button3);
-		panelNumeros.add(button4);
-		panelNumeros.add(button5);
-		panelNumeros.add(button6);
-		panelNumeros.add(button7);
-		panelNumeros.add(button8);
-		panelNumeros.add(button9);
+		GridBagConstraints gridBag = new GridBagConstraints();
+		gridBag.gridx = 0;
+		gridBag.gridy = 0;
+		gridBag.gridwidth = 3;
+		gridBag.gridheight = 1;
+		gridBag.fill = GridBagConstraints.HORIZONTAL;
+		gridBag.weightx = 1.0;
 
-		panelExtras.add(button0);
+		// panelNumeros.add(button1);
+		// panelNumeros.add(button2);
+		// panelNumeros.add(button3);
+		// panelNumeros.add(button4);
+		// panelNumeros.add(button5);
+		// panelNumeros.add(button6);
+		// panelNumeros.add(button7);
+		// panelNumeros.add(button8);
+		// panelNumeros.add(button9);
 
-		panelOperadores.add(buttonMais);
-		panelOperadores.add(buttonMenos);
-		panelOperadores.add(buttonVezes);
-		panelOperadores.add(buttonDividir);
-		panelOperadores.add(buttonIgual);
+		// panelExtras.add(button0);
 
-		panelVisor.add(label1);
+		// panelOperadores.add(buttonMais);
+		// panelOperadores.add(buttonMenos);
+		// panelOperadores.add(buttonVezes);
+		// panelOperadores.add(buttonDividir);
+		// panelOperadores.add(buttonIgual);
+
+		panelVisor.add(label1, gridBag);
+		panelVisor.add(backSpace);
 
 		frame = new JFrame();
 		frame.setSize(500, 500);
-		frame.add(panelNumeros, BorderLayout.CENTER);
-		frame.add(panelExtras, BorderLayout.SOUTH);
-		frame.add(panelOperadores, BorderLayout.EAST);
+		frame.add(panelmain, BorderLayout.CENTER);
+
+		// frame.add(panelNumeros, BorderLayout.CENTER);
+		// frame.add(panelExtras, BorderLayout.SOUTH);
+		// frame.add(panelOperadores, BorderLayout.EAST);
+
 		frame.add(panelVisor, BorderLayout.NORTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Calculadora GUI");
@@ -199,22 +285,44 @@ public class calculadoraGUI implements ActionListener {
 
 	public void handleInput(String btnTxt, String command) {
 		boolean readyOperator = (!(btnTxt == "=") && !lastNumber);
-		boolean readyCalculate = !(firstNumber == "" && secondNumber == "" && operator == "");
+		boolean readyCalculate = (!(firstNumber == "") && !(secondNumber == "") && !(operator == ""));
 		switch (command) {
 			case "number":
 				addNumber(btnTxt);
 				break;
 			case "operator":
-				if (readyOperator) {
-					operator = btnTxt;
-					lastNumber = true;
-					return;
+				if (!(firstNumber == "")) {
+					if (readyOperator) {
+						operator = btnTxt;
+						lastNumber = true;
+						return;
+					}
+					if (readyCalculate) {
+						float result = calculate(operator, firstNumber, secondNumber);
+						resetNumbers(result);
+						break;
+					}
 				}
-				if (readyCalculate) {
-					float result = calculate(operator, firstNumber, secondNumber);
-					resetNumbers(result);
-					break;
+			case "backSpace":
+				if (lastNumber && !(secondNumber == "")) {
+					secondNumber = erase(secondNumber);
 				}
+				if (lastNumber && secondNumber == "") {
+					operator = "";
+					lastNumber = false;
+				}
+				if (!(firstNumber == "")) {
+					firstNumber = erase(firstNumber);
+				}
+				break;
+			case "point":
+				if (lastNumber && !(secondNumber == "")) {
+					secondNumber = secondNumber + ".";
+				}
+				if (!lastNumber && !(firstNumber == "")) {
+					firstNumber = firstNumber + ".";
+				}
+				break;
 		}
 
 	}
@@ -228,6 +336,11 @@ public class calculadoraGUI implements ActionListener {
 
 		firstNumber += num;
 		System.out.println("first number " + firstNumber);
+	}
+
+	public String erase(String originalString) {
+		String newString = originalString.substring(0, originalString.length() - 1);
+		return newString;
 	}
 
 	public void drawEquation() {
